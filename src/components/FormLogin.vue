@@ -71,7 +71,7 @@ function validarFormulario() {
     return false;
   }
   if (hobbie === "") {
-    alert("Adicione algum hobbie.")
+    alert("Adicione algum hobbie.");
     return false;
   }
   if (linguagens === "") {
@@ -79,7 +79,7 @@ function validarFormulario() {
     return false;
   }
   if (biografia === "") {
-    alert("Biografia é obrigatória.")
+    alert("Biografia é obrigatória.");
     return false;
   }
   return true;
@@ -89,7 +89,7 @@ function validarFormulario() {
   <div class="form">
     <div class="forms">
       <form action="">
-        <legend><h2>Dados pessoais</h2></legend>
+        <legend><h2 class="h2-top">Dados pessoais</h2></legend>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" v-model.lazy="nome" />
         <label for="idade">Data de nascimento:</label>
@@ -104,28 +104,18 @@ function validarFormulario() {
           id="confirmarSenha"
           v-model.lazy="confirmarSenha"
         />
-        <button @click="enviarFormulario">Enviar</button>
-      </form>
-    </div>
-    <div class="forms">
-      <form action="">
-        <legend><h2>Dados pessoais</h2></legend>
+        <legend><h2 class="h2-form">Localização</h2></legend>
         <label for="endereco">Endereço</label>
         <input type="text" id="endereco" v-model.lazy="endereco" />
         <label for="cidade">Cidade</label>
         <input type="text" id="cidade" v-model.lazy="cidade" />
         <label for="estados">Estado</label>
         <select name="estados" id="estados">
-          <option value="" v-for="(item, index) in estados" :key="index">
+          <option value="" v-for="(item, index) in estados" :key="index" class="ini-est">
             {{ item }}
           </option>
         </select>
-        <button @click="enviarFormulario">Enviar</button>
-      </form>
-    </div>
-    <div class="forms">
-      <form action="">
-        <legend><h2>Diversos</h2></legend>
+        <legend><h2 class="h2-form">Diversos</h2></legend>
         <label for="hobbies">Hobbies</label>
         <input type="text" id="hobbie" v-model.lazy="hobbie" />
         <label for="cidade">Linguagens de Programação</label>

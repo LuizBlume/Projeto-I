@@ -1,24 +1,42 @@
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+.forms {
+    width: 450px;
+    height: 100vh;
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: .5px solid rgb(187, 187, 187);
+        border-radius: 5px;
+    }
+    textarea {
+        resize: none;
+    }
+    .h2-form {
+        text-align: center;
+        margin-top: 20px;
+    }
+    #estados {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: .5px solid rgb(187, 187, 187);
+        border-radius: 5px;
+        option {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+    }
+    }
+    
 }
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.form > * {
+.form>* {
     border: 1px solid rgb(187, 187, 187);
     padding: 20px;
     border-radius: 8px;
-}
-.forms {
-    width: 450px;
-    height: 60vh;
-}
-textarea {
-    resize: none;
 }

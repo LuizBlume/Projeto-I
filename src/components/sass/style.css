@@ -4,33 +4,47 @@
   box-sizing: border-box;
 }
 
-label {
+.forms {
+  width: 450px;
+  height: 100vh;
+}
+.forms label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
-
-input {
+.forms input {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 0.5px solid rgb(187, 187, 187);
   border-radius: 5px;
+}
+.forms textarea {
+  resize: none;
+}
+.forms .h2-form {
+  text-align: center;
+  margin-top: 20px;
+}
+.forms #estados {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 0.5px solid rgb(187, 187, 187);
+  border-radius: 5px;
+}
+.forms #estados option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
 }
 
 .form > * {
   border: 1px solid rgb(187, 187, 187);
   padding: 20px;
   border-radius: 8px;
-}
-
-.forms {
-  width: 450px;
-  height: 60vh;
-}
-
-textarea {
-  resize: none;
 }
 
 .container {
