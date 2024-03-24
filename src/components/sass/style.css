@@ -59,4 +59,31 @@ button {
   justify-content: space-around;
   align-items: center;
   padding: 40px;
+}
+
+.resultados-area {
+  text-align: center;
+}
+.resultados-area .resultados-content {
+  display: inline-block;
+  text-align: center;
+}
+.resultados-area .resultados-content .resultado {
+  background: rgb(27, 161, 185);
+  background: linear-gradient(90deg, rgb(27, 161, 185) 21%, rgb(87, 46, 150) 100%);
+  color: #fff;
+  border: 1px solid black;
+  margin: 10px;
+  width: 40vw;
+  height: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.resultados-area .resultados-content .resultado li {
+  list-style: none;
+  margin: 20px;
+}
+.resultados-area .resultados-content .resultado li span {
+  font-weight: 700;
 }/*# sourceMappingURL=style.css.map */

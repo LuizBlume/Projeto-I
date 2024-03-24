@@ -41,10 +41,9 @@ const estados = reactive([
   "TO",
 ]);
 function enviarFormulario() {
-  if (validarFormulario()) {
-    mostrarMensagem.value = true;
-  }
+  mostrarMensagem.value = !mostrarMensagem.value;
 }
+
 function validarFormulario() {
   if (nome.value.length < 3 || nome.value.length > 20) {
     alert("O nome deve ter entre 3 e 20 caracteres.");
@@ -54,7 +53,7 @@ function validarFormulario() {
     alert("O e-mail deve ser válido.");
     return false;
   }
-  if (senha.value != confirmarSenha) {
+  if (senha.value != confirmarSenha.value) {
     alert("As senhas não conferem.");
     return false;
   }
@@ -66,12 +65,12 @@ function validarFormulario() {
     alert("A cidade é obrigatório.");
     return false;
   }
-  if (!estados.value) {
+  if (estados.value) {
     alert("Selecione um estado.");
     return false;
   }
   if (hobbie === "") {
-    alert("Adicione algum hobbie.")
+    alert("Adicione algum hobbie.");
     return false;
   }
   if (linguagens === "") {
@@ -79,10 +78,9 @@ function validarFormulario() {
     return false;
   }
   if (biografia === "") {
-    alert("Biografia é obrigatória.")
+    alert("Biografia é obrigatória.");
     return false;
   }
-  return true;
 }
 </script>
 <template>
@@ -97,7 +95,7 @@ function validarFormulario() {
         <label for="email">E-mail:</label>
         <input type="email" id="email" v-model.lazy="email" />
         <label for="password">Senha:</label>
-        <input type="password" id="password" v-model.lazy="password" />
+        <input type="password" id="password" v-model.lazy="senha" />
         <label for="password">Confirmar Senha:</label>
         <input
           type="password"
@@ -136,13 +134,17 @@ function validarFormulario() {
       </form>
     </div>
   </div>
-  <div class="resultado" v-if="mostrarMensagem">
-    <p v-if="mostrarMensagem">Dados enviados com sucesso:</p>
-    <ul v-if="mostrarMensagem">
-      <li>Nome: {{ nome }}</li>
-      <li>Idade: {{ idade }}</li>
-      <li>E-mail: {{ email }}</li>
-    </ul>
+  <div class="resultados-area">
+    <div class="resultados-content">
+    <button @click="enviarFormulario">Show informations</button>
+    <div class="resultado" v-if="mostrarMensagem">
+      <ul>
+        <li>Nome: <span>{{ nome }}</span></li>
+        <li>Idade: <span>{{ idade }}</span></li>
+        <li>E-mail: <span>{{ email }}</span></li>
+      </ul>
+    </div>
+  </div>
   </div>
 </template>
 <style scoped>
