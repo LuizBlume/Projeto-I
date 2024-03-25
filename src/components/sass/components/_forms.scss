@@ -9,16 +9,46 @@ input {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: monospace;
 }
 .form > * {
-    border: 1px solid rgb(187, 187, 187);
     padding: 20px;
     border-radius: 8px;
 }
+
+form{
+    select{
+        padding: 7px 15px;
+        margin: 0 0 10px 0;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        transition: ease-in-out 0.2s;
+        &:hover{
+        background-color: #004c9c;
+        
+        }
+    }
+}
+
 .forms {
     width: 450px;
     height: 60vh;
+    scale: 1.1;
+    background-color: #131313;
+    color: #fff;
+    opacity: .7;
 }
 textarea {
     resize: none;
+}
+button {
+    display: block;
+    justify-self: center;
+    align-items: flex-start;
+}
+
+h2{
+    margin: 0 0 20px 0;
+    text-align: center;
 }

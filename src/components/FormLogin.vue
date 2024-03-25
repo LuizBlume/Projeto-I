@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref } from "vue";
 const nome = ref("");
-const idade = ref(null);
+const data_nasc = ref("");
 const email = ref("");
 const senha = ref("");
 const confirmarSenha = ref("");
@@ -41,9 +41,10 @@ const estados = reactive([
   "TO",
 ]);
 function enviarFormulario() {
-  mostrarMensagem.value = !mostrarMensagem.value;
+  if (validarFormulario()) {
+    mostrarMensagem.value = !mostrarMensagem.value;
+  }
 }
-
 function validarFormulario() {
   if (nome.value.length < 3 || nome.value.length > 20) {
     alert("O nome deve ter entre 3 e 20 caracteres.");
@@ -81,6 +82,7 @@ function validarFormulario() {
     alert("Biografia é obrigatória.");
     return false;
   }
+  return true;
 }
 </script>
 <template>
@@ -90,8 +92,8 @@ function validarFormulario() {
         <legend><h2>Dados pessoais</h2></legend>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" v-model.lazy="nome" />
-        <label for="idade">Data de nascimento:</label>
-        <input type="date" id="idade" v-model.number.lazy="idade" />
+        <label for="data_nasc">Data de nascimento:</label>
+        <input type="date" id="data_nasc" v-model.number.lazy="idade" />
         <label for="email">E-mail:</label>
         <input type="email" id="email" v-model.lazy="email" />
         <label for="password">Senha:</label>
@@ -136,15 +138,21 @@ function validarFormulario() {
   </div>
   <div class="resultados-area">
     <div class="resultados-content">
-    <button @click="enviarFormulario">Show informations</button>
-    <div class="resultado" v-if="mostrarMensagem">
-      <ul>
-        <li>Nome: <span>{{ nome }}</span></li>
-        <li>Idade: <span>{{ idade }}</span></li>
-        <li>E-mail: <span>{{ email }}</span></li>
-      </ul>
+      <button @click="enviarFormulario">Show informations</button>
+      <div class="resultado" v-if="mostrarMensagem">
+        <ul>
+          <li>
+            Nome: <span>{{ nome }}</span>
+          </li>
+          <li>
+            Idade: <span>{{ idade }}</span>
+          </li>
+          <li>
+            E-mail: <span>{{ email }}</span>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 <style scoped>
