@@ -1,89 +1,19 @@
 <script setup>
 import { reactive, ref } from "vue";
-const nome = ref("");
-const data_nasc = ref("");
-const email = ref("");
-const senha = ref("");
-const confirmarSenha = ref("");
-const endereco = ref("");
-const cidade = ref("");
-const hobbie = ref("");
-const linguagens = ref("");
-const biografia = ref("");
-const mostrarMensagem = ref(false);
-const estados = reactive([
-  "AC",
-  "AL",
-  "AP",
-  "AM",
-  "BA",
-  "CE",
-  "DF",
-  "ES",
-  "GO",
-  "MA",
-  "MT",
-  "MS",
-  "MG",
-  "PA",
-  "PB",
-  "PR",
-  "PE",
-  "PI",
-  "RJ",
-  "RN",
-  "RS",
-  "RO",
-  "RR",
-  "SC",
-  "SP",
-  "SE",
-  "TO",
-]);
-function enviarFormulario() {
-  if (validarFormulario()) {
-    mostrarMensagem.value = !mostrarMensagem.value;
-  }
-}
-function validarFormulario() {
-  if (nome.value.length < 3 || nome.value.length > 20) {
-    alert("O nome deve ter entre 3 e 20 caracteres.");
-    return false;
-  }
-  if (!email.value.includes("@")) {
-    alert("O e-mail deve ser válido.");
-    return false;
-  }
-  if (senha.value != confirmarSenha.value) {
-    alert("As senhas não conferem.");
-    return false;
-  }
-  if (endereco.value === "") {
-    alert("O endereço é obrigatório.");
-    return false;
-  }
-  if (cidade.value === "") {
-    alert("A cidade é obrigatório.");
-    return false;
-  }
-  if (estados.value) {
-    alert("Selecione um estado.");
-    return false;
-  }
-  if (hobbie === "") {
-    alert("Adicione algum hobbie.");
-    return false;
-  }
-  if (linguagens === "") {
-    alert("Linguagem preferida é obrigatória.");
-    return false;
-  }
-  if (biografia === "") {
-    alert("Biografia é obrigatória.");
-    return false;
-  }
-  return true;
-}
+const elementForms = reactive({
+  nome: "",
+  idade: "",
+  email: "",
+  senha: "",
+  confirmarSenha: "",
+  endereco: "",
+  cidade: "",
+  estados: ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"],
+  hobbie: "",
+  linguagens: "",
+  biografia: "",
+  mostrarMensagem: false,
+});
 </script>
 <template>
   <div class="form">
