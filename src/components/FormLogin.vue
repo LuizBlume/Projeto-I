@@ -1,5 +1,6 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+const mostrarMensagem = ref(false);
 const elementForms = reactive({
   nome: "",
   idade: "",
@@ -43,9 +44,53 @@ const elementForms = reactive({
   estadoSelecionado: "",
   mostrarMensagem: false,
 });
-const enviarFormulario = () => {
-  elementForms.mostrarMensagem = true;
+
+const showMessage = () => {
+  mostrarMensagem.value = !mostrarMensagem.value;
 };
+
+function enviarFormulario() {
+   
+}
+function validarFormulario() {
+  if (nome.value.length < 3 || nome.value.length > 20) {
+    alert("O nome deve ter entre 3 e 20 caracteres.");
+    return false;
+  }
+  if (!email.value.includes("@")) {
+    alert("O e-mail deve ser válido.");
+    return false;
+  }
+  if (senha.value != confirmarSenha.value) {
+    alert("As senhas não conferem.");
+    return false;
+  }
+  if (endereco.value === "") {
+    alert("O endereço é obrigatório.");
+    return false;
+  }
+  if (cidade.value === "") {
+    alert("A cidade é obrigatório.");
+    return false;
+  }
+  if (estados.value) {
+    alert("Selecione um estado.");
+    return false;
+  }
+  if (hobbie === "") {
+    alert("Adicione algum hobbie.");
+    return false;
+  }
+  if (linguagens === "") {
+    alert("Linguagem preferida é obrigatória.");
+    return false;
+  }
+  if (biografia === "") {
+    alert("Biografia é obrigatória.");
+    return false;
+  }
+  return true;
+}
 </script>
 <template>
   <div class="form">
@@ -53,7 +98,7 @@ const enviarFormulario = () => {
       <div class="div-esquerda">
         <h1>Formulário de Cadastro</h1>
         <div class="button-enviar">
-          <button @click="enviarFormulario">Enviar</button>
+          <button @click="validarFormulario">Enviar</button>
         </div>
       </div>
       <div class="forms">
@@ -105,8 +150,8 @@ const enviarFormulario = () => {
   </div>
   <div class="resultados-area">
     <div class="resultados-content">
-      <button @click="enviarFormulario">Show informations</button>
-      <div class="resultado" v-if="elementForms.mostrarMensagem">
+      <button @click="showMessage">Show informations</button>
+      <div class="resultado" v-if="mostrarMensagem">
         <ul>
           <li v-if="elementForms.nome">
             Nome: <span>{{ elementForms.nome }}</span>
