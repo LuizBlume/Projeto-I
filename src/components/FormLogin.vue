@@ -1,6 +1,6 @@
 <script setup>
-import { computed, reactive, ref } from "vue";
-const mostrarMensagem = ref(false);
+import { reactive } from "vue";
+
 const elementForms = reactive({
   nome: "",
   idade: "",
@@ -10,33 +10,9 @@ const elementForms = reactive({
   endereco: "",
   cidade: "",
   estados: [
-    "AC",
-    "AL",
-    "AP",
-    "AM",
-    "BA",
-    "CE",
-    "DF",
-    "ES",
-    "GO",
-    "MA",
-    "MT",
-    "MS",
-    "MG",
-    "PA",
-    "PB",
-    "PR",
-    "PE",
-    "PI",
-    "RJ",
-    "RN",
-    "RS",
-    "RO",
-    "RR",
-    "SC",
-    "SP",
-    "SE",
-    "TO",
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
+    "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC",
+    "SP", "SE", "TO"
   ],
   hobbie: "",
   linguagens: "",
@@ -46,46 +22,43 @@ const elementForms = reactive({
 });
 
 const showMessage = () => {
-  mostrarMensagem.value = !mostrarMensagem.value;
+  elementForms.mostrarMensagem = !elementForms.mostrarMensagem;
 };
 
-function enviarFormulario() {
-   
-}
 function validarFormulario() {
-  if (nome.value.length < 3 || nome.value.length > 20) {
+  if (elementForms.nome.length < 3 || elementForms.nome.length > 20) {
     alert("O nome deve ter entre 3 e 20 caracteres.");
     return false;
   }
-  if (!email.value.includes("@")) {
+  if (!elementForms.email.includes("@")) {
     alert("O e-mail deve ser válido.");
     return false;
   }
-  if (senha.value != confirmarSenha.value) {
+  if (elementForms.senha !== elementForms.confirmarSenha) {
     alert("As senhas não conferem.");
     return false;
   }
-  if (endereco.value === "") {
+  if (elementForms.endereco === "") {
     alert("O endereço é obrigatório.");
     return false;
   }
-  if (cidade.value === "") {
-    alert("A cidade é obrigatório.");
+  if (elementForms.cidade === "") {
+    alert("A cidade é obrigatória.");
     return false;
   }
-  if (estados.value) {
+  if (elementForms.estadoSelecionado === "") {
     alert("Selecione um estado.");
     return false;
   }
-  if (hobbie === "") {
+  if (elementForms.hobbie === "") {
     alert("Adicione algum hobbie.");
     return false;
   }
-  if (linguagens === "") {
+  if (elementForms.linguagens === "") {
     alert("Linguagem preferida é obrigatória.");
     return false;
   }
-  if (biografia === "") {
+  if (elementForms.biografia === "") {
     alert("Biografia é obrigatória.");
     return false;
   }
@@ -122,14 +95,15 @@ function validarFormulario() {
       </div>
       <div class="forms">
         <form action="">
-          <legend><h2>Dados pessoais</h2></legend>
+          <legend><h2>Endereço</h2></legend>
           <label for="endereco">Endereço</label>
           <input type="text" id="endereco" v-model.lazy="elementForms.endereco" />
           <label for="cidade">Cidade</label>
           <input type="text" id="cidade" v-model.lazy="elementForms.cidade" />
           <label for="estados">Estado</label>
           <select name="estados" id="estados" v-model.lazy="elementForms.estadoSelecionado">
-            <option value="" v-for="(item, index) in elementForms.estados" :key="index">
+            <option value="" disabled selected>Selecione um estado</option>
+            <option v-for="(item, index) in elementForms.estados" :key="index">
               {{ item }}
             </option>
           </select>
@@ -140,18 +114,18 @@ function validarFormulario() {
           <legend><h2>Diversos</h2></legend>
           <label for="hobbies">Hobbies</label>
           <input type="text" id="hobbie" v-model.lazy="elementForms.hobbie" />
-          <label for="cidade">Linguagens de Programação</label>
+          <label for="linguagens">Linguagens de Programação</label>
           <input type="text" id="linguagens" v-model.lazy="elementForms.linguagens" />
           <label for="biografia">Biografia</label>
-          <input type="text" id="biografia" v-model.lazy="elementForms.biografia" />
+          <textarea id="biografia" v-model.lazy="elementForms.biografia"></textarea>
         </form>
       </div>
     </div>
   </div>
   <div class="resultados-area">
     <div class="resultados-content">
-      <button @click="showMessage">Show informations</button>
-      <div class="resultado" v-if="mostrarMensagem">
+      <button @click="showMessage">Mostrar Informações</button>
+      <div class="resultado" v-if="elementForms.mostrarMensagem">
         <ul>
           <li v-if="elementForms.nome">
             Nome: <span>{{ elementForms.nome }}</span>
