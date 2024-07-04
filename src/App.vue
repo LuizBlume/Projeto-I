@@ -11,8 +11,11 @@ import FormLoginVue from "./components/FormLogin.vue";
 
 <style scoped>
 .body {
+    display: flex;
+    flex-direction: column;
     background-color: #474747;
     height: 100vh;
     font-family: monospace !important;
+    justify-content: center;
 }
 </style>

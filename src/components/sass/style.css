@@ -92,7 +92,6 @@ input {
 .resultados-content {
   display: flex;
   justify-content: center;
-  height: 60%;
 }
 .resultados-content button {
   background-color: #ff0000;
