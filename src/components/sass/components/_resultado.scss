@@ -36,6 +36,10 @@
         &:hover {
             transition: all 1s ease-in-out;
         }
+
+        li{
+            list-style: none;
+        }
     }
 }
 @keyframes go-back {
