@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from "vue";
-
+const divResultado = document.getElementById("resultado");
 const elementForms = reactive({
   nome: "",
   idade: "",
@@ -10,15 +10,40 @@ const elementForms = reactive({
   endereco: "",
   cidade: "",
   estados: [
-    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
-    "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC",
-    "SP", "SE", "TO"
+    "AC",
+    "AL",
+    "AP",
+    "AM",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MT",
+    "MS",
+    "MG",
+    "PA",
+    "PB",
+    "PR",
+    "PE",
+    "PI",
+    "RJ",
+    "RN",
+    "RS",
+    "RO",
+    "RR",
+    "SC",
+    "SP",
+    "SE",
+    "TO",
   ],
   hobbie: "",
   linguagens: "",
   biografia: "",
   estadoSelecionado: "",
   mostrarMensagem: false,
+  mostrarInformacoes: false,
 });
 
 const showMessage = () => {
@@ -62,6 +87,7 @@ function validarFormulario() {
     alert("Biografia é obrigatória.");
     return false;
   }
+  elementForms.mostrarInformacoes = true;
   return true;
 }
 </script>
@@ -80,11 +106,19 @@ function validarFormulario() {
           <label for="nome">Nome:</label>
           <input type="text" id="nome" v-model.lazy="elementForms.nome" />
           <label for="data_nasc">Data de nascimento:</label>
-          <input type="date" id="data_nasc" v-model.number.lazy="elementForms.idade" />
+          <input
+            type="date"
+            id="data_nasc"
+            v-model.number.lazy="elementForms.idade"
+          />
           <label for="email">E-mail:</label>
           <input type="email" id="email" v-model.lazy="elementForms.email" />
           <label for="password">Senha:</label>
-          <input type="password" id="password" v-model.lazy="elementForms.senha" />
+          <input
+            type="password"
+            id="password"
+            v-model.lazy="elementForms.senha"
+          />
           <label for="password">Confirmar Senha:</label>
           <input
             type="password"
@@ -97,11 +131,19 @@ function validarFormulario() {
         <form action="">
           <legend><h2>Endereço</h2></legend>
           <label for="endereco">Endereço</label>
-          <input type="text" id="endereco" v-model.lazy="elementForms.endereco" />
+          <input
+            type="text"
+            id="endereco"
+            v-model.lazy="elementForms.endereco"
+          />
           <label for="cidade">Cidade</label>
           <input type="text" id="cidade" v-model.lazy="elementForms.cidade" />
           <label for="estados">Estado</label>
-          <select name="estados" id="estados" v-model.lazy="elementForms.estadoSelecionado">
+          <select
+            name="estados"
+            id="estados"
+            v-model.lazy="elementForms.estadoSelecionado"
+          >
             <option value="" disabled selected>Selecione um estado</option>
             <option v-for="(item, index) in elementForms.estados" :key="index">
               {{ item }}
@@ -115,16 +157,23 @@ function validarFormulario() {
           <label for="hobbies">Hobbies</label>
           <input type="text" id="hobbie" v-model.lazy="elementForms.hobbie" />
           <label for="linguagens">Linguagens de Programação</label>
-          <input type="text" id="linguagens" v-model.lazy="elementForms.linguagens" />
+          <input
+            type="text"
+            id="linguagens"
+            v-model.lazy="elementForms.linguagens"
+          />
           <label for="biografia">Biografia</label>
-          <textarea id="biografia" v-model.lazy="elementForms.biografia"></textarea>
+          <textarea
+            id="biografia"
+            v-model.lazy="elementForms.biografia"
+          ></textarea>
         </form>
       </div>
     </div>
   </div>
-  <div class="resultados-area">
+  <div class="resultados-area" id="resultado">
     <div class="resultados-content">
-      <button @click="showMessage">Mostrar Informações</button>
+      <button v-if="elementForms.mostrarInformacoes" @click="showMessage">Mostrar Informações</button>
       <div class="resultado" v-if="elementForms.mostrarMensagem">
         <ul>
           <li v-if="elementForms.nome">
@@ -139,7 +188,12 @@ function validarFormulario() {
           <li v-if="elementForms.senha">
             Senha: <span>{{ elementForms.senha }}</span>
           </li>
-          <li v-if="elementForms.confirmarSenha && elementForms.confirmarSenha === elementForms.senha">
+          <li
+            v-if="
+              elementForms.confirmarSenha &&
+              elementForms.confirmarSenha === elementForms.senha
+            "
+          >
             Confirmação de senha: <span>{{ elementForms.confirmarSenha }}</span>
           </li>
           <li v-if="elementForms.endereco">
@@ -155,7 +209,8 @@ function validarFormulario() {
             Hobbies: <span>{{ elementForms.hobbie }}</span>
           </li>
           <li v-if="elementForms.linguagens">
-            Linguagens de programação: <span>{{ elementForms.linguagens }}</span>
+            Linguagens de programação:
+            <span>{{ elementForms.linguagens }}</span>
           </li>
           <li v-if="elementForms.biografia">
             Biografia: <span>{{ elementForms.biografia }}</span>
