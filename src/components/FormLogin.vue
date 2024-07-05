@@ -55,6 +55,10 @@ function validarFormulario() {
     alert("O nome deve ter entre 3 e 20 caracteres.");
     return false;
   }
+  if (elementForms.idade < 18) {
+    alert("A idade deve ser maior que 18 anos.");
+    return false;
+  }
   if (!elementForms.email.includes("@")) {
     alert("O e-mail deve ser válido.");
     return false;
@@ -180,7 +184,7 @@ function validarFormulario() {
             Nome: <span>{{ elementForms.nome }}</span>
           </li>
           <li v-if="elementForms.idade">
-            Idade: <span>{{ elementForms.idade }}</span>
+            Ano de nascimento: <span>{{ elementForms.idade }}</span>
           </li>
           <li v-if="elementForms.email">
             E-mail: <span>{{ elementForms.email }}</span>
